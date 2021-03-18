@@ -8,6 +8,7 @@ CANVAS_HEIGHT = 500
 UPDATE_DELAY = 33
 GRAVITY = 2.5
 STARTING_VELOCITY = -30
+JUMP_VELOCITY = -20
 
 class Dot(Sprite):
     def init_element(self):
@@ -22,6 +23,9 @@ class Dot(Sprite):
     def start(self):
         self.is_started = True
 
+    def jump(self):
+        self.vy = JUMP_VELOCITY
+    
 
 class FlappyGame(GameApp):
     def create_sprites(self):
@@ -33,7 +37,6 @@ class FlappyGame(GameApp):
         self.create_sprites()
         self.is_started = False
         
-
     def pre_update(self):
         pass
 
@@ -42,8 +45,11 @@ class FlappyGame(GameApp):
 
     def on_key_pressed(self, event):
         if event.char == ' ':
-            self.is_started = True
-            self.dot.start()
+            if not self.is_started:
+                self.is_started = True
+                self.dot.start()
+            else:
+                self.dot.jump()
 
 
 if __name__ == "__main__":
