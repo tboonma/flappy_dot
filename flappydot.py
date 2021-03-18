@@ -70,15 +70,23 @@ class FlappyGame(GameApp):
 class PillarPair(Sprite):
     def init_element(self):
         self.is_started = False
-
-    def update(self):
-        if self.is_started:
-            self.vx = PILLAR_SPEED
-            self.x -= self.vx
     
     def start(self):
         self.is_started = True
+    
+    def is_out_of_screen(self):
+        if self.x <= CANVAS_WIDTH+40 and self.x >= -20:
+            return False
+        return True
 
+    def update(self):
+        self.vx = PILLAR_SPEED
+        self.x -= self.vx
+        if self.is_out_of_screen():
+            self.reset_position()
+
+    def reset_position(self):
+        self.x = CANVAS_WIDTH+40
 
 if __name__ == "__main__":
     root = tk.Tk()
