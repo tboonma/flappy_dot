@@ -88,6 +88,10 @@ class PillarPair(Sprite):
     def reset_position(self):
         self.x = CANVAS_WIDTH+40
 
+    def random_height(self):
+        import random
+        self.y = random.randint(-20, CANVAS_HEIGHT)
+        
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("Monkey Banana Game")
