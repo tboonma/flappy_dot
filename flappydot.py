@@ -61,6 +61,13 @@ class PillarPair(Sprite):
         self.vx = PILLAR_SPEED
         self.x -= self.vx
 
+    def is_out_of_screen(self):
+        if self.x = PILLAR_SPEED and self.y = JUMP_VELOCITY:
+            return False
+        return True
+
+    def reset_position(self):
+        
 
 if __name__ == "__main__":
     root = tk.Tk()
