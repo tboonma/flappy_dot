@@ -33,6 +33,11 @@ class Dot(Sprite):
             return False
         return True
     
+    def is_hit(self, pillar_pair):
+        if self.x >= pillar_pair.x-40 and self.x <= pillar_pair.x+40:
+            if self.y <= pillar_pair.y-100 or self.y >= pillar_pair.y+100:
+                return True
+        return False
 
 class FlappyGame(GameApp):
     def create_sprites(self):
@@ -53,9 +58,12 @@ class FlappyGame(GameApp):
     def post_update(self):
         if self.dot.is_out_of_screen() and self.is_started:
             messagebox.showinfo("Alert", "Game Over!")
-            self.dot.is_started = False
-            self.pillar_pair.is_started = False
-            self.is_started = False
+            self.elements.clear()
+            self.init_game()
+        if self.dot.is_hit(self.pillar_pair):
+            messagebox.showinfo("Alert", "Game Over!")
+            self.elements.clear()
+            self.init_game()
 
     def on_key_pressed(self, event):
         if event.char == ' ':
@@ -80,10 +88,11 @@ class PillarPair(Sprite):
         return True
 
     def update(self):
-        self.vx = PILLAR_SPEED
-        self.x -= self.vx
-        if self.is_out_of_screen():
-            self.reset_position()
+        if self.is_started:
+            self.vx = PILLAR_SPEED
+            self.x -= self.vx
+            if self.is_out_of_screen():
+                self.reset_position()
 
     def reset_position(self):
         self.x = CANVAS_WIDTH+40
