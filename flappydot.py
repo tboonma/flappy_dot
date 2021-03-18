@@ -43,7 +43,7 @@ class Dot(Sprite):
     
     def counting_score(self, pillar_pair):
         if self.x >= pillar_pair.x-40 and self.x <= pillar_pair.x+40:
-            if self.y >= pillar_pair.y-100 or self.y <= pillar_pair.y+100:
+            if self.y >= pillar_pair.y-90 or self.y <= pillar_pair.y+90:
                 return True
         return False
 
