@@ -9,6 +9,7 @@ UPDATE_DELAY = 33
 GRAVITY = 2.5
 STARTING_VELOCITY = -30
 JUMP_VELOCITY = -20
+PILLAR_SPEED = 10
 
 class Dot(Sprite):
     def init_element(self):
@@ -56,7 +57,9 @@ class FlappyGame(GameApp):
 
 
 class PillarPair(Sprite):
-    pass
+    def update(self):
+        self.vx = PILLAR_SPEED
+        self.x -= self.vx
 
 
 if __name__ == "__main__":
