@@ -29,6 +29,8 @@ class Dot(Sprite):
         self.vy = JUMP_VELOCITY
 
     def is_out_of_screen(self):
+        if self.y <= -20:
+            return True
         if self.x <= CANVAS_WIDTH and self.y <= CANVAS_HEIGHT:
             return False
         return True
