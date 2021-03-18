@@ -57,17 +57,19 @@ class FlappyGame(GameApp):
 
 
 class PillarPair(Sprite):
-    def update(self):
-        self.vx = PILLAR_SPEED
-        self.x -= self.vx
-
     def is_out_of_screen(self):
-        if self.x = PILLAR_SPEED and self.y = JUMP_VELOCITY:
+        if self.x <= CANVAS_WIDTH+40 and self.x >= -20:
             return False
         return True
 
+    def update(self):
+        self.vx = PILLAR_SPEED
+        self.x -= self.vx
+        if self.is_out_of_screen():
+            self.reset_position()
+
     def reset_position(self):
-        
+        self.x = CANVAS_WIDTH+40
 
 if __name__ == "__main__":
     root = tk.Tk()
