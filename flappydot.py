@@ -51,6 +51,12 @@ class FlappyGame(GameApp):
             else:
                 self.dot.jump()
 
+class PillarPair(Sprite):
+    def update(self):
+        self.pillar_pair = PillarPair(self, 'images/pillar-pair.png', CANVAS_WIDTH, CANVAS_HEIGHT // 2)
+        self.elements.append(self.pillar_pair)
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
