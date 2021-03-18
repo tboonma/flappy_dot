@@ -96,10 +96,11 @@ class PillarPair(Sprite):
 
     def reset_position(self):
         self.x = CANVAS_WIDTH+40
+        self.y = self.random_height()
 
     def random_height(self):
         import random
-        self.y = random.randint(-20, CANVAS_HEIGHT)
+        return random.randint(120, CANVAS_HEIGHT-120)
         
 if __name__ == "__main__":
     root = tk.Tk()
